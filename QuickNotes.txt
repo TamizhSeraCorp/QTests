@@ -1,0 +1,4 @@
+https://stackoverflow.com/questions/38508865/cant-get-feign-client-to-work-for-a-basic-example
+
+http://www.javainuse.com/spring/spring-cloud-netflix-feign-tutorial
+https://dzone.com/articles/the-netflix-stack-using-spring-boot-part-3-feign
