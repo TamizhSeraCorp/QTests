@@ -1,13 +1,22 @@
 package com.seracorp.demo.feign;
 
-import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import com.seracorp.demo.model.LoginJson;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class FeignDemoClientTest {
 
 	@Autowired
@@ -15,7 +24,10 @@ public class FeignDemoClientTest {
 
     @Test
     public void testGetPosts() {
-        ResponseEntity<String> responseEntity = restTemplate.getForEntity("/posts", String.class);
+    	LoginJson request = new LoginJson();
+    	request.setApikey("4D0C09CAF0290409");
+    	 
+        ResponseEntity<String> responseEntity = restTemplate.postForEntity("/login", request, String.class);//("/login", String.class);
 
         HttpStatus statusCode = responseEntity.getStatusCode();
         assertThat(String.format("Actual status code: %d, reason: %s.",
